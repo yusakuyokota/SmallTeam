@@ -17,6 +17,6 @@ public class ScoreManager : MonoBehaviour
     void Update()
     {
         Text score_text = score_object.GetComponent<Text>();
-        score_text.text = "Score" + TotalScore;
+        score_text.text = "" + TotalScore;
     }
 }
