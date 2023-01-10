@@ -1,32 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class SceneController : MonoBehaviour
 {
-    public GameObject fadeCanvas;
-
-    // Start is called before the first frame update
-    void Start()
+    public void OnClickStart()
     {
-        if (!FadeManager.isFadeInstance)
-        {
-            Instantiate(fadeCanvas);
-        }
+        FadeManager.Instance.LoadScene("InGameScene", 0.3f);
     }
 
-    void findFadeObject()
+    public void OnClickRanking()
     {
-        fadeCanvas = GameObject.FindGameObjectWithTag("Fade");
-        fadeCanvas.GetComponent<FadeManager>().fadeIn();
-    }
-
-    public async void sceneChange(string InGameScene)
-    {
-        fadeCanvas.GetComponent<FadeManager>().fadeOut();
-        await Task.Delay(200);
-        SceneManager.LoadScene("InGameScene");
+        FadeManager.Instance.LoadScene("Ranking", 0.3f);
     }
 }

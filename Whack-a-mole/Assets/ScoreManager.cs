@@ -6,7 +6,8 @@ using UnityEngine.UI;
 public class ScoreManager : MonoBehaviour
 {
     public GameObject score_object = null;
-    public int TotalScore = 0;
+    public static int TotalScore = 0;
+    public int getScore = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,6 +17,11 @@ public class ScoreManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (getScore != 0)
+        {
+            TotalScore += getScore;
+            getScore = 0;
+        }
         Text score_text = score_object.GetComponent<Text>();
         score_text.text = "" + TotalScore;
     }
