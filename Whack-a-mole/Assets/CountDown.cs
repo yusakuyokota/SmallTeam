@@ -9,8 +9,12 @@ public class CountDown : MonoBehaviour
 
     public Image imageMask;
 
+    public AudioClip whistle;
+    AudioSource audioSource;
+
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         textCountDown.text = "";
         Invoke("Count", 1.0f);
     }
@@ -23,15 +27,19 @@ public class CountDown : MonoBehaviour
     IEnumerator CountdownCoroutine()
     {
         textCountDown.text = "3";
+        audioSource.PlayOneShot(whistle);
         yield return new WaitForSeconds(1.0f);
 
         textCountDown.text = "2";
+        audioSource.PlayOneShot(whistle);
         yield return new WaitForSeconds(1.0f);
 
         textCountDown.text = "1";
+        audioSource.PlayOneShot(whistle);
         yield return new WaitForSeconds(1.0f);
 
         textCountDown.text = "スタート";
+        audioSource.PlayOneShot(whistle);
         yield return new WaitForSeconds(1.0f);
 
         textCountDown.text = "";

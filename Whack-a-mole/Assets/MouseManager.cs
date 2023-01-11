@@ -14,7 +14,9 @@ public class MouseManager : MonoBehaviour,IPointerClickHandler
 
     public int get = 0;
     private Animator anim;
-    float speed = 1f;
+
+    public AudioClip Attack;
+    AudioSource audioSource;
 
     public int TimeLimit = 0;
 
@@ -30,6 +32,7 @@ public class MouseManager : MonoBehaviour,IPointerClickHandler
     // Start is called before the first frame update
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         SetSprite();
 
         ClickTimer = 0;
@@ -39,7 +42,9 @@ public class MouseManager : MonoBehaviour,IPointerClickHandler
 
     // Update is called once per frame
     void Update()
-    {    
+    {
+        
+
         if (get == 2)
         {
             anim.SetBool("New Bool", true);
@@ -47,6 +52,7 @@ public class MouseManager : MonoBehaviour,IPointerClickHandler
             MouseCheck = true;
 
             flag = false;
+            get = 0;
         }
 
         ClickTimer -= Time.deltaTime;
@@ -63,7 +69,6 @@ public class MouseManager : MonoBehaviour,IPointerClickHandler
             SpriteTimer = 0;
             anim.SetBool("New Bool", false);
             SetSprite();
-            get = 0;
         }
 
         //if (TimeLimit == 1)
@@ -77,6 +82,7 @@ public class MouseManager : MonoBehaviour,IPointerClickHandler
     {
         if (!flag)
         {
+            audioSource.PlayOneShot(Attack);
             Score = ScoreSet();
 
             flag = true;
@@ -91,12 +97,12 @@ public class MouseManager : MonoBehaviour,IPointerClickHandler
 
     void SetSprite()
     {
-        Rand = UnityEngine.Random.Range(0, 3);
-        if (Rand >= 2)
+        Rand = UnityEngine.Random.Range(0, 10);
+        if (Rand >= 6)
         {
             image.sprite = sprite1;
         }
-        else if (Rand >= 1)
+        else if (Rand >= 2)
         {
             image.sprite = sprite2;
         }

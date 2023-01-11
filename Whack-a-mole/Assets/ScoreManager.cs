@@ -11,7 +11,7 @@ public class ScoreManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        TotalScore = 0;
     }
 
     // Update is called once per frame
